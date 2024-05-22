@@ -104,7 +104,7 @@ namespace Repository.DataAccess
             {
                 var context = new Pentacle_MarketingContext();
                 form = context.Forms.SingleOrDefault(f => f.Id == id);
-                if (form != null)
+                if (form == null)
                 {
                     throw new Exception("Not found.");
                 }

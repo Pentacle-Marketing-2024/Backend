@@ -8,7 +8,7 @@ using Utils.PasswordHasher;
 namespace EXE201.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/admin")]
     public class AdminController : ControllerBase
     {
         private readonly IAdminRepository _adminRepository;
@@ -22,8 +22,8 @@ namespace EXE201.Controllers
             _passwordHasher = passwordHasher;
         }
 
-        [HttpPost("Login", Name = "Login")]
-        public IActionResult Login(LoginRequest request)
+        [HttpPost("login", Name = "Login")]
+        public IActionResult Login([FromBody] LoginRequest request)
         {
             try
             {

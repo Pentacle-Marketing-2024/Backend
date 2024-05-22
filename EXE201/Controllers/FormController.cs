@@ -8,7 +8,7 @@ using Utils.PasswordHasher;
 namespace EXE201.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/form")]
     public class FormController : ControllerBase
     {
         private readonly IFormRepository _formRepository;
@@ -22,8 +22,7 @@ namespace EXE201.Controllers
             _passwordHasher = passwordHasher;
         }
 
-        [Authorize]
-        [HttpGet("GetAll", Name = "GetAll")]
+        [HttpGet(Name = "GetAll")]
         public IActionResult GetAll()
         {
             try
@@ -34,11 +33,10 @@ namespace EXE201.Controllers
             {
                 return BadRequest(ex.Message);
             }
-            
+
         }
 
-        [Authorize]
-        [HttpGet("GetById", Name = "GetById")]
+        [HttpGet("getById/{id}", Name = "GetById")]
         public IActionResult GetById(int id)
         {
             try
@@ -52,9 +50,8 @@ namespace EXE201.Controllers
 
         }
 
-        [Authorize]
-        [HttpGet("GetByFullName", Name = "GetByFullName")]
-        public IActionResult GetByFullName(string fullName)
+        [HttpGet("searchByFullName", Name = "GetByFullName")]
+        public IActionResult GetByFullName([FromQuery] string fullName)
         {
             try
             {
@@ -67,8 +64,7 @@ namespace EXE201.Controllers
 
         }
 
-        [Authorize]
-        [HttpGet("GetByEmail", Name = "GetByEmail")]
+        [HttpGet("searchByEmail", Name = "GetByEmail")]
         public IActionResult GetByEmail(string email)
         {
             try
@@ -82,8 +78,8 @@ namespace EXE201.Controllers
 
         }
 
-        [HttpPost("Create", Name = "Create")]
-        public IActionResult Create(FormRequest request)
+        [HttpPost("create", Name = "Create")]
+        public IActionResult Create([FromBody] FormRequest request)
         {
             try
             {

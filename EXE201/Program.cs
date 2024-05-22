@@ -120,7 +120,7 @@ else
         c.RoutePrefix = "";
     });
 }
-
+app.UseCors();
 app.UseAuthentication();
 
 app.UseHttpsRedirection();
