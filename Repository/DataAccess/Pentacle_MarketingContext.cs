@@ -41,14 +41,6 @@ namespace Repository.DataAccess
             modelBuilder.Entity<Form>(entity =>
             {
                 entity.Property(e => e.CreateDate).HasColumnType("date");
-
-                entity.Property(e => e.Description).IsUnicode(false);
-
-                entity.Property(e => e.Email).IsUnicode(false);
-
-                entity.Property(e => e.FullName).IsUnicode(false);
-
-                entity.Property(e => e.Method).IsUnicode(false);
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -21,7 +21,7 @@ namespace EXE201.Controllers
             _jwtHelper = tokenHelper;
             _passwordHasher = passwordHasher;
         }
-
+        [Authorize]
         [HttpGet(Name = "GetAll")]
         public IActionResult GetAll()
         {
@@ -35,7 +35,7 @@ namespace EXE201.Controllers
             }
 
         }
-
+        [Authorize]
         [HttpGet("getById/{id}", Name = "GetById")]
         public IActionResult GetById(int id)
         {
@@ -49,7 +49,7 @@ namespace EXE201.Controllers
             }
 
         }
-
+        [Authorize]
         [HttpGet("searchByFullName", Name = "GetByFullName")]
         public IActionResult GetByFullName([FromQuery] string fullName)
         {
@@ -63,7 +63,7 @@ namespace EXE201.Controllers
             }
 
         }
-
+        [Authorize]
         [HttpGet("searchByEmail", Name = "GetByEmail")]
         public IActionResult GetByEmail(string email)
         {
