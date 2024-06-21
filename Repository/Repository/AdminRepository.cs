@@ -20,10 +20,16 @@ namespace Repository.Repository
                 if (File.Exists(fileName))
                 {
                     string jsonData = File.ReadAllText(fileName);
-                    Admin admin = JsonSerializer.Deserialize<Admin>(jsonData);
-                    if(admin.Username == username && passwordHasher.VerifyPassword(password, admin.Password))
+                    var jsonDocument = JsonDocument.Parse(jsonData);
+                    var usersElement = jsonDocument.RootElement.GetProperty("Users").ToString();
+
+                    List<Admin> admins = JsonSerializer.Deserialize<List<Admin>>(usersElement);
+                    foreach (Admin a in admins)
                     {
-                        return admin;
+                        if (a.Username == username && passwordHasher.VerifyPassword(password, a.Password))
+                        {
+                            return a;
+                        }
                     }
                 }
                 return null;
