@@ -27,6 +27,7 @@ namespace EXE201.Controllers
         {
             try
             {
+                //string a = _passwordHasher.HashPassword(request.Password);
                 Admin admin = _adminRepository.Login(request.Username, request.Password);
                 if (admin != null)
                 {
